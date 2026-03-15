@@ -1,19 +1,26 @@
 import pygame
+from src.core.config import(
+    SCREEN_WIDTH,
+    SCREEN_HEIGHT,
+    FPS,
+    GAME_TITLE,
+    BACKGROUND_COLOR
+)
 
 class Game:
     def __init__(self):
         pygame.init()
 
-        self.screen_width =800
-        self.screen_height = 600
-        self.title = "Modular RPG Engine"
+        self.screen_width = SCREEN_WIDTH
+        self.screen_height = SCREEN_HEIGHT
+        self.title = GAME_TITLE
 
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         pygame.display.set_caption(self.title)
 
         self.clock = pygame.time.Clock()
         self.is_running = True
-        self.fps = 60
+        self.fps = FPS
     
     def handle_events(self):
         for event in pygame.event.get():
@@ -24,7 +31,7 @@ class Game:
         pass
     
     def render(self):
-        self.screen.fill((30,30,30))
+        self.screen.fill(BACKGROUND_COLOR)
         pygame.display.flip()
 
     def run(self):
