@@ -1,5 +1,9 @@
+from src.core.game import Game
+
+
 def main():
-    print("Modular RPG Engine starting...")
+    game = Game()
+    game.run()
 
 
 if __name__ == "__main__":
