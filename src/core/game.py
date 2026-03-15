@@ -3,9 +3,9 @@ from src.core.config import(
     SCREEN_WIDTH,
     SCREEN_HEIGHT,
     FPS,
-    GAME_TITLE,
-    BACKGROUND_COLOR
+    GAME_TITLE
 )
+from src.states.gameplay_state import GameplayState
 
 class Game:
     def __init__(self):
@@ -21,17 +21,22 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
         self.fps = FPS
+        self.current_state = GameplayState()
     
     def handle_events(self):
-        for event in pygame.event.get():
+        events = pygame.event.get()
+
+        for event in events:
             if event.type == pygame.QUIT:
                 self.is_running = False
+        self.current_state.handle_events(events)
+
 
     def update(self):
-        pass
+        self.current_state.update()
     
     def render(self):
-        self.screen.fill(BACKGROUND_COLOR)
+        self.current_state.render(self.screen)
         pygame.display.flip()
 
     def run(self):
